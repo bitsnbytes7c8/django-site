@@ -23,7 +23,7 @@ def view_profile(request, username=None):
         selfProfile = True
     else:
         selfProfile = False
-        
+
     try:
         user_profile = user.profile
     except UserProfile.DoesNotExist():
@@ -52,16 +52,3 @@ def create_profile(request):
         form = ProfileForm(initial={'fullName':profile.fullName, 'phoneNumber':profile.phoneNumber, 'website':profile.website})
     variables = RequestContext(request, {'form' : form})
     return render_to_response('user_profile/create_profile.html', variables, )
-
-@csrf_protect
-@login_required
-def searchUsers(request):
-    if request.method == 'POST':
-        form = UserSearchForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            users = UserProfile.objects.filter(fullName__icontains=cd['name'])
-            return render(request, 'user_profile/user_search_results.html', {'searchedName' : cd['name'], 'users' : users})
-    else:
-        form = UserSearchForm()
-    return render(request, 'user_profile/search_user.html', {'form' : form})

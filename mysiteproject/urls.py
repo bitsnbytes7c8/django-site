@@ -12,5 +12,5 @@ urlpatterns = [
     url(r'^register/success/$', register_success),
     url(r'^home/$', home),
     url(r'^profile/', include('user_profile.urls')),
-    url(r'^search/', user_profile.views.searchUsers),
+    url(r'^search/', include('search.urls')),
 ]

@@ -7,6 +7,3 @@ class ProfileForm(forms.Form):
     phoneNumber = forms.RegexField(regex=r'^[0-9]*$', widget=forms.TextInput(attrs=dict(required=False, max_length=10)), label=_("Phone Number"),
                 error_messages={ 'invalid': _("Invalid phone number") })
     website = forms.URLField(label=_("Website"))
-
-class UserSearchForm(forms.Form):
-    name = forms.CharField(label = _("Name"), widget = forms.TextInput(attrs=dict(required=True, max_length=40)))
