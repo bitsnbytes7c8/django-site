@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Search Results{% endblock %}
+{% block head %}Search Results{% endblock %}
+{% block content %}
+<p>You searched for: <strong>{{ searchedName }}</strong></p>
+
+{% if users %}
+    <p>Found {{ users|length }} User {{ users|pluralize }}.</p>
+    <ul>
+        {% for user in users %}
+        <li><a href="/profile/view/{{user.user.username}}">{{ user.fullName }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No users matched your search criteria.</p>
+{% endif %}
+{% endblock %}

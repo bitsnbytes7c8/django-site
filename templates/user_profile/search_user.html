@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Search User{% endblock %}
+{% block head %}Search User{% endblock %}
+{% block content %}
+    <form method="post" action=".">{% csrf_token %}
+        <table border="0">
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Search" />
+    </form>
+{% endblock %}

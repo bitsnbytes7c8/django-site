@@ -1,6 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from login.views import *
+import user_profile
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -11,4 +12,5 @@ urlpatterns = [
     url(r'^register/success/$', register_success),
     url(r'^home/$', home),
     url(r'^profile/', include('user_profile.urls')),
+    url(r'^search/', user_profile.views.searchUsers),
 ]
