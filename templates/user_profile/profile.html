@@ -1,9 +1,13 @@
 {% extends "base.html" %}
-{% block title %}Your Profile{% endblock %}
-{% block head %}Your profile{% endblock %}
+{% block title %}{{userprofile.fullName}}'s Profile{% endblock %}
+
+{% block head %}{{userprofile.fullName}}'s profile{% endblock %}
+
 {% block content %}
     <p>Full Name : {{ userprofile.fullName }}</p>
     <p>Phone Number : {{ userprofile.phoneNumber }}</p>
     <p>Website : <a href={{ userprofile.website }}> {{ userprofile.website }} </a> </p>
-    <p> <a href="../edit">Edit Profile</a> </p>
+    {% if selfProfile == True %}
+        <p> <a href="../edit">Edit Profile</a> </p>
+    {% endif %}
 {% endblock %}

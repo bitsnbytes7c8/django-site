@@ -7,14 +7,24 @@ from user_profile.forms import *
 from django.template import RequestContext
 from user_profile.models import UserProfile
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 @login_required
-def view_profile(request):
+def view_profile(request, username=None):
+    selfProfile = True
+    if username is not None:
+        selfProfile = False
+        try:
+            user = User.objects.get(username__iexact=username)
+        except User.DoesNotExist:
+            return HttpResponseRedirect('/home/')
+    else:
+        user = request.user
     try:
-        user_profile = request.user.profile
+        user_profile = user.profile
     except UserProfile.DoesNotExist():
         return create_profile(request)
-    variables = RequestContext(request, {'userprofile' : user_profile})
+    variables = RequestContext(request, {'userprofile' : user_profile, 'selfProfile' : selfProfile})
     return render_to_response('user_profile/profile.html', variables, )
 
 @csrf_protect
