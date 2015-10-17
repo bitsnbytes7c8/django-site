@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title>Django Login Application |
+        {% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <div style="text-align:right">
+            <a href="/home">Home</a>
+            <a style="margin-left:5px" href="/profile/view">Profile</a>
+            <a style="margin-left:5px" href="/logout">Logout</a>
+        </div>
+        <hr/>
+        <h1>{% block head %}{% endblock %}</h1>
+        {% block content %}{% endblock %}
+        <br/><br/>
+        <hr/>
+        <p style="text-align:center"> You are viewing my site </p>
+    </body>
+</html>
